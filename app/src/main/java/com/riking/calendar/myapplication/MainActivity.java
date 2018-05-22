@@ -6,6 +6,7 @@ import android.util.Log;
 import android.widget.NumberPicker;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 public class MainActivity extends AppCompatActivity {
     //标明需要注入的对象
@@ -14,8 +15,10 @@ public class MainActivity extends AppCompatActivity {
     NumberPicker picker;
     @Inject
     Dog dog;
+    @Named("context") // 标记
     @Inject
     Cat cat;
+    @Named("name")  // 标记
     @Inject
     Cat ca2;
 

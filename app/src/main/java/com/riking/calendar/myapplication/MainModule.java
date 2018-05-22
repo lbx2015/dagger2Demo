@@ -2,6 +2,7 @@ package com.riking.calendar.myapplication;
 
 import android.content.Context;
 
+import javax.inject.Named;
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -29,6 +30,7 @@ public class MainModule {
     }
 
     @Provides
+    @Named("context")  // 通过context创建Person 对象
     @Singleton
         // 关键字，标明该方法提供依赖对象
     Cat providerCat(Context context) {
@@ -36,5 +38,10 @@ public class MainModule {
         return new Cat(context);
     }
 
+    @Named("name")// 通过name创建Person 对象
+    @Provides
+    Cat provissderdCatName() {
+        return new Cat("name");
+    }
 
 }

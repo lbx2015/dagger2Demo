@@ -11,4 +11,8 @@ public class Cat {
         this.context = context;
         Log.d("dagger", "Cat create!!!");
     }
+
+    public Cat(String name) {
+        Log.d("dagger", "Cat create!!! + by name");
+    }
 }
