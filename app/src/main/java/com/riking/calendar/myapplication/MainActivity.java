@@ -30,10 +30,13 @@ public class MainActivity extends AppCompatActivity {
         picker.setDisplayedValues(data);
 
         // 构造桥梁对象
-        MainComponent component = DaggerMainComponent.builder().mainModule(new MainModule(this)).build();
-
-        //注入
-        component.inject(this);
+//        MainComponent component = DaggerMainComponent.builder().mainModule(new MainModule(this)).build();
+//
+//        //注入
+//        component.inject(this);
+        //another way by sub component
+        AppComponent appCom = DaggerAppComponent.builder().appModule(new AppModule(this)).build();
+        DaggerActivityComponent.builder().appComponent(appCom).activityMoudule(new ActivityMoudule()).build().inject(this);
         Log.d("dagger cat1:", cat.toString());
         Log.d("dagger cat2:", ca2.toString());
 
