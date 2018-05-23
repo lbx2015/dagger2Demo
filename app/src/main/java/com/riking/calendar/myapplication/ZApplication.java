@@ -6,9 +6,14 @@ import android.os.Bundle;
 import android.util.Log;
 
 public class ZApplication extends Application {
+    // 为什么可以使用静态
+    public static AppComponent appComponent;
+
     @Override
     public void onCreate() {
         super.onCreate();
+        // 实例化
+        appComponent = DaggerAppComponent.builder().appModule(new AppModule(this)).build();
         registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
             @Override
             public void onActivityCreated(Activity activity, Bundle savedInstanceState) {

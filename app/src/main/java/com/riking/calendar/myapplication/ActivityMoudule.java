@@ -2,6 +2,10 @@ package com.riking.calendar.myapplication;
 
 import android.content.Context;
 
+import com.riking.calendar.myapplication.annotation.DogForContext;
+import com.riking.calendar.myapplication.annotation.DogForName;
+import com.riking.calendar.myapplication.annotation.PerActivity;
+
 import javax.inject.Named;
 import javax.inject.Singleton;
 
@@ -29,15 +33,19 @@ public class ActivityMoudule {
     }
 
     @Provides
-    @Named("context")  // 通过context创建Person 对象
-    @Singleton
+    @DogForContext  // 通过context创建Person 对象
+    @PerActivity
+        // 添加标记，生命其所构造的对象单例
+//    @Named("context")  // 通过context创建Person 对象
+//    @Singleton
         // 关键字，标明该方法提供依赖对象
     Cat providerCat(Context context) {
         //提供Person对象
         return new Cat(context);
     }
 
-    @Named("name")// 通过name创建Person 对象
+    @DogForName// 通过name创建Person 对象
+//    @Named("name")// 通过name创建Person 对象
     @Provides
     Cat providerCat2() {
         return new Cat("name");

@@ -5,8 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.NumberPicker;
 
+import com.riking.calendar.myapplication.annotation.DogForContext;
+import com.riking.calendar.myapplication.annotation.DogForName;
+
 import javax.inject.Inject;
-import javax.inject.Named;
 
 public class MainActivity extends AppCompatActivity {
     //标明需要注入的对象
@@ -15,12 +17,17 @@ public class MainActivity extends AppCompatActivity {
     NumberPicker picker;
     @Inject
     Dog dog;
-    @Named("context") // 标记
+    @DogForName // 标记
+//    @Named("context") // 标记
     @Inject
     Cat cat;
-    @Named("name")  // 标记
+    @DogForContext  // 标记
     @Inject
     Cat ca2;
+    /**
+     * 不使用静态的，因为该Component只是针对于该Activity，而不是全局的
+     */
+    ActivityComponent activityComponent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +45,16 @@ public class MainActivity extends AppCompatActivity {
 //        //注入
 //        component.inject(this);
         //another way by sub component
-        AppComponent appCom = DaggerAppComponent.builder().appModule(new AppModule(this)).build();
-        DaggerActivityComponent.builder().appComponent(appCom).activityMoudule(new ActivityMoudule()).build().inject(this);
+//        AppComponent appCom = DaggerAppComponent.builder().appModule(new AppModule(this)).build();
+//        DaggerActivityComponent.builder().appComponent(appCom).activityMoudule(new ActivityMoudule()).build().inject(this);
+
+        activityComponent = DaggerActivityComponent.builder()
+                .appComponent(ZApplication.appComponent)  // 添加了全局的AppComponent组件,可以使用全局的实例化对象
+                .activityMoudule(new ActivityMoudule())
+                .build();
+
+
+        activityComponent.inject(this);
         Log.d("dagger cat1:", cat.toString());
         Log.d("dagger cat2:", ca2.toString());
 
