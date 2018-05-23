@@ -2,8 +2,8 @@ package com.riking.calendar.myapplication;
 
 import android.content.Context;
 
-import com.riking.calendar.myapplication.annotation.DogForContext;
-import com.riking.calendar.myapplication.annotation.DogForName;
+import com.riking.calendar.myapplication.annotation.CatForContext;
+import com.riking.calendar.myapplication.annotation.CatForName;
 
 import javax.inject.Singleton;
 
@@ -32,7 +32,7 @@ public class MainModule {
     }
 
     @Provides
-    @DogForContext  // 通过context创建Person 对象
+    @CatForContext  // 通过context创建Person 对象
 //    @Named("context")  // 通过context创建Person 对象
     @Singleton
         // 关键字，标明该方法提供依赖对象
@@ -41,7 +41,7 @@ public class MainModule {
         return new Cat(context);
     }
 
-    @DogForName// 通过name创建Person 对象
+    @CatForName// 通过name创建Person 对象
 //    @Named("name")// 通过name创建Person 对象
     @Provides
     Cat provissderdCatName() {

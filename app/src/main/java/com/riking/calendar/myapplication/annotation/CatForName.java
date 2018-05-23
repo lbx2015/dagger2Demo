@@ -7,6 +7,6 @@ import javax.inject.Qualifier;
 
 @Qualifier//关键词
 @Retention(RetentionPolicy.RUNTIME)//运行时可用
-public @interface DogForContext {
-    //Context 注解对象
+public @interface CatForName {
+    //Name 注解对象
 }

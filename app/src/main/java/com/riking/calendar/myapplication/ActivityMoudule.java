@@ -2,12 +2,9 @@ package com.riking.calendar.myapplication;
 
 import android.content.Context;
 
-import com.riking.calendar.myapplication.annotation.DogForContext;
-import com.riking.calendar.myapplication.annotation.DogForName;
+import com.riking.calendar.myapplication.annotation.CatForContext;
+import com.riking.calendar.myapplication.annotation.CatForName;
 import com.riking.calendar.myapplication.annotation.PerActivity;
-
-import javax.inject.Named;
-import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -33,7 +30,7 @@ public class ActivityMoudule {
     }
 
     @Provides
-    @DogForContext  // 通过context创建Person 对象
+    @CatForContext  // 通过context创建Person 对象
     @PerActivity
         // 添加标记，生命其所构造的对象单例
 //    @Named("context")  // 通过context创建Person 对象
@@ -44,7 +41,7 @@ public class ActivityMoudule {
         return new Cat(context);
     }
 
-    @DogForName// 通过name创建Person 对象
+    @CatForName// 通过name创建Person 对象
 //    @Named("name")// 通过name创建Person 对象
     @Provides
     Cat providerCat2() {
